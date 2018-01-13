@@ -16,5 +16,5 @@
 # JAVA_OPTS configuration
 ---
 from_environment: true
-java_opts: '-Duser.timezone: Asia/Calcutta'
+java_opts: '-Duser.timezone=Asia/Calcutta'
   
