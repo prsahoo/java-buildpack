@@ -17,3 +17,4 @@
 ---
 from_environment: true
 java_opts:
+  -Duser.timezone: Asia/Calcutta
