@@ -16,5 +16,5 @@
 # JAVA_OPTS configuration
 ---
 from_environment: true
-java_opts: '-Duser.timezone=Asia/Calcutta'
+java_opts: '-Duser.timezone=Asia/Calcutta -Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djava.ext.dirs=$PWD/.java-buildpack/container_security_provider:$PWD/.java-buildpack/open_jdk_jre/lib/ext -Djava.security.properties=$PWD/.java-buildpack/security_providers/java.security -Daccess.logging.enabled=false -Djava.endorsed.dirs=$PWD/.java-buildpack/tomcat/endorsed -Dhttp.port=$PORT'
   
