@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,6 +52,7 @@ module JavaBuildpack
           logger = Logging::LoggerFactory.instance.get_logger ApplicationCache
 
           raise 'Application cache directory is undefined' unless self.class.available?
+
           logger.debug { "Application Cache Directory: #{self.class.application_cache_directory}" }
 
           super(Pathname.new(self.class.application_cache_directory), CACHED_RESOURCES_DIRECTORY)

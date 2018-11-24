@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -46,7 +48,7 @@ describe JavaBuildpack::Jre::OpenJDKLike do
   let(:memory_calculator_configuration) { { 'stack_threads' => '200' } }
 
   it 'always supports' do
-    expect(component.supports?).to be
+    expect(component).to be_supports
   end
 
   it 'creates submodules' do
@@ -68,7 +70,7 @@ describe JavaBuildpack::Jre::OpenJDKLike do
     java_home.version = version_7
     expect(component.command).to eq('CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_like/bin/' \
                                     'java-buildpack-memory-calculator-0.0.0 -totMemory=$MEMORY_LIMIT' \
-                                    ' -stackThreads=200 -loadedClasses=0 -poolType=permgen -vmOptions="$JAVA_OPTS")' \
+                                    ' -loadedClasses=0 -poolType=permgen -stackThreads=200 -vmOptions="$JAVA_OPTS")' \
                                     ' && echo JVM Memory Configuration: $CALCULATED_MEMORY && ' \
                                     'JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY"')
 
@@ -78,7 +80,7 @@ describe JavaBuildpack::Jre::OpenJDKLike do
     java_home.version = version_8
     expect(component.command).to eq('CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_like/bin/' \
                                     'java-buildpack-memory-calculator-0.0.0 -totMemory=$MEMORY_LIMIT' \
-                                    ' -stackThreads=200 -loadedClasses=0 -poolType=metaspace -vmOptions="$JAVA_OPTS")' \
+                                    ' -loadedClasses=0 -poolType=metaspace -stackThreads=200 -vmOptions="$JAVA_OPTS")' \
                                     ' && echo JVM Memory Configuration: $CALCULATED_MEMORY && ' \
                                     'JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY"')
 

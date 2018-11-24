@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -126,7 +128,7 @@ describe JavaBuildpack::BuildpackVersion do
     it 'picks up offline from the environment' do
       allow_any_instance_of(described_class).to receive(:system).with('which git > /dev/null').and_return(false)
 
-      expect(buildpack_version.offline).to be
+      expect(buildpack_version.offline).to be_truthy
     end
 
   end

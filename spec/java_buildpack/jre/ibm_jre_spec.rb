@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
 # Copyright 2017 the original author or authors.
 #
@@ -37,7 +39,7 @@ describe JavaBuildpack::Jre::IbmJRE do
   let(:jvmkill_agent_configuration) { {} }
 
   it 'supports anyway' do
-    expect(component.supports?).to be
+    expect(component).to be_supports
   end
 
   it 'creates IbmJreInitializer instance' do

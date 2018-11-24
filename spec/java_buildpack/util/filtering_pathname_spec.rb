@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -118,8 +120,8 @@ describe JavaBuildpack::Util::FilteringPathname do
   end
 
   it 'compares to pathnames using ==' do
-    expect((filtering_target + 'good') == (app_dir + 'good')).to be
-    expect((filtering_target + 'bad') == (app_dir + 'bad')).to be
+    expect((filtering_target + 'good') == (app_dir + 'good')).to be_truthy
+    expect((filtering_target + 'bad') == (app_dir + 'bad')).to be_truthy
   end
 
   # rubocop:disable Lint/UselessComparison, Style/CaseEquality
@@ -132,18 +134,18 @@ describe JavaBuildpack::Util::FilteringPathname do
   end
 
   it 'compares to filtering pathnames using ==' do
-    expect((filtering_target + 'good') == (filtering_target + 'good')).to be
-    expect((filtering_target + 'bad') == (filtering_target + 'bad')).to be
+    expect((filtering_target + 'good') == (filtering_target + 'good')).to be_truthy
+    expect((filtering_target + 'bad') == (filtering_target + 'bad')).to be_truthy
   end
 
   it 'compares to pathnames using ===' do
-    expect((filtering_target + 'good') === (app_dir + 'good')).to be
-    expect((filtering_target + 'bad') === (app_dir + 'bad')).to be
+    expect((filtering_target + 'good') === (app_dir + 'good')).to be_truthy
+    expect((filtering_target + 'bad') === (app_dir + 'bad')).to be_truthy
   end
 
   it 'compares to filtering pathnames using ===' do
-    expect((filtering_target + 'good') === (filtering_target + 'good')).to be
-    expect((filtering_target + 'bad') === (filtering_target + 'bad')).to be
+    expect((filtering_target + 'good') === (filtering_target + 'good')).to be_truthy
+    expect((filtering_target + 'bad') === (filtering_target + 'bad')).to be_truthy
   end
   # rubocop:enable Lint/UselessComparison, Style/CaseEquality
 

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -92,7 +94,8 @@ describe JavaBuildpack::Container::Groovy do
 
     expect(component.release).to eq("test-var-2 test-var-1 JAVA_OPTS=$JAVA_OPTS #{java_home.as_env_var} exec " \
                                     '$PWD/.java-buildpack/groovy/bin/groovy -cp $PWD/.additional_libs/test-jar-1.jar:' \
-                                    '$PWD/.additional_libs/test-jar-2.jar Application.groovy Alpha.groovy ' \
+                                    '$PWD/.additional_libs/test-jar-2.jar:$PWD/.root_libs/test-jar-3.jar:' \
+                                    '$PWD/.root_libs/test-jar-4.jar Application.groovy Alpha.groovy ' \
                                     'directory/Beta.groovy invalid.groovy')
   end
 
@@ -101,7 +104,8 @@ describe JavaBuildpack::Container::Groovy do
 
     expect(component.release).to eq("test-var-2 test-var-1 JAVA_OPTS=$JAVA_OPTS #{java_home.as_env_var} exec " \
                                     '$PWD/.java-buildpack/groovy/bin/groovy -cp $PWD/.additional_libs/test-jar-1.jar:' \
-                                    '$PWD/.additional_libs/test-jar-2.jar:$PWD/Alpha.jar:$PWD/directory/Beta.jar ' \
+                                    '$PWD/.additional_libs/test-jar-2.jar:$PWD/Alpha.jar:$PWD/directory/Beta.jar:' \
+                                    '$PWD/.root_libs/test-jar-3.jar:$PWD/.root_libs/test-jar-4.jar ' \
                                     'Application.groovy invalid.groovy')
   end
 

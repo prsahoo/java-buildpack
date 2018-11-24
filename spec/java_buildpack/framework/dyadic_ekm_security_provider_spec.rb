@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -115,13 +117,13 @@ describe JavaBuildpack::Framework::DyadicEkmSecurityProvider do
 
         component.compile
 
-        expect(additional_libraries).to include(droplet.sandbox + 'usr/lib/dsm/dsm-advapi-1.0.jar')
+        expect(root_libraries).to include(droplet.sandbox + 'usr/lib/dsm/dsm-advapi-1.0.jar')
       end
 
       it 'adds JAR to classpath during release in Java 9' do
         component.release
 
-        expect(additional_libraries).to include(droplet.sandbox + 'usr/lib/dsm/dsm-advapi-1.0.jar')
+        expect(root_libraries).to include(droplet.sandbox + 'usr/lib/dsm/dsm-advapi-1.0.jar')
       end
 
       it 'adds does not add extension directory in Java 9' do

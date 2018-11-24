@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -75,6 +77,7 @@ module JavaBuildpack
 
       def add_system_prop_if_config_present(config_entry, system_property_name)
         return unless @configuration.key?(config_entry)
+
         @droplet.java_opts.add_system_property(system_property_name, @configuration[config_entry])
       end
 
@@ -85,6 +88,7 @@ module JavaBuildpack
       def normalized_log_level
         normalized_log_level = LOG_LEVEL_MAPPING[log_level.upcase]
         raise "Invalid value of the 'log_level' property: '#{log_level}'" unless normalized_log_level
+
         normalized_log_level
       end
 

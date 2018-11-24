@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -57,19 +59,19 @@ describe JavaBuildpack::Container::Tomcat do
   it 'detects WEB-INF',
      app_fixture: 'container_tomcat' do
 
-    expect(component.supports?).to be
+    expect(component).to be_supports
   end
 
   it 'does not detect when WEB-INF is absent',
      app_fixture: 'container_main' do
 
-    expect(component.supports?).not_to be
+    expect(component).not_to be_supports
   end
 
   it 'does not detect when WEB-INF is present in a Java main application',
      app_fixture: 'container_main_with_web_inf' do
 
-    expect(component.supports?).not_to be
+    expect(component).not_to be_supports
   end
 
   it 'creates submodules' do
@@ -86,6 +88,7 @@ describe JavaBuildpack::Container::Tomcat do
       .to receive(:new).with(sub_configuration_context(logging_support_configuration))
     allow(JavaBuildpack::Container::TomcatRedisStore)
       .to receive(:new).with(sub_configuration_context(redis_store_configuration))
+    allow(JavaBuildpack::Container::TomcatSetenv).to receive(:new).with(context)
 
     component.sub_components context
   end

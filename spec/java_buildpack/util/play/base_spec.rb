@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,13 +28,13 @@ describe JavaBuildpack::Util::Play::Base do
   it 'does not support with no start script' do
     allow(play).to receive(:start_script).and_return nil
 
-    expect(play.supports?).not_to be
+    expect(play).not_to be_supports
   end
 
   it 'does not support with a non-existent start script' do
     allow(play).to receive(:start_script).and_return(droplet.root + 'bin/start')
 
-    expect(play.supports?).not_to be
+    expect(play).not_to be_supports
   end
 
   it 'does not support with no play JAR' do
@@ -42,7 +44,7 @@ describe JavaBuildpack::Util::Play::Base do
     FileUtils.mkdir_p app_dir + 'bin'
     FileUtils.touch app_dir + 'bin/start'
 
-    expect(play.supports?).not_to be
+    expect(play).not_to be_supports
   end
 
   it 'raises error if augment_classpath method is unimplemented' do
@@ -76,7 +78,7 @@ describe JavaBuildpack::Util::Play::Base do
     end
 
     it 'supports application' do
-      expect(play.supports?).to be
+      expect(play).to be_supports
     end
 
     it 'returns a version' do
@@ -92,9 +94,9 @@ describe JavaBuildpack::Util::Play::Base do
     end
 
     it 'determines whether or not certain JARs are present in the lib directory' do
-      expect(play.jar?(/so.*st.jar/)).to be
-      expect(play.jar?(/some.test.jar/)).to be
-      expect(play.jar?(/nosuch.jar/)).not_to be
+      expect(play).to be_jar(/so.*st.jar/)
+      expect(play).to be_jar(/some.test.jar/)
+      expect(play).not_to be_jar(/nosuch.jar/)
     end
 
     it 'replaces the bootstrap class' do

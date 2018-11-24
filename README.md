@@ -39,6 +39,12 @@ If the key or value contains an environment variable that you want to bind at ru
 $ cf set-env my-application JBP_CONFIG_JAVA_MAIN '{ arguments: "-server.port=\$PORT -foo=bar" }'
 ```
 
+An example of configuration is to specify a `javaagent` that is packaged within an application.
+
+```bash
+$ cf set-env my-application JAVA_OPTS '-javaagent:app/META-INF/myagent.jar -Dmyagent.config_file=app/META-INF/my_agent.conf'
+```
+
 Environment variable can also be specified in the applications `manifest` file. For example, to specify an environment variable in an applications manifest file that disables Auto-reconfiguration.
 
 ```bash
@@ -83,9 +89,12 @@ The buildpack supports extension through the use of Git repository forking. The 
   * [Dynatrace Appmon Agent](docs/framework-dynatrace_appmon_agent.md) ([Configuration](docs/framework-dynatrace_appmon_agent.md#configuration))
   * [Dynatrace SaaS/Managed OneAgent](docs/framework-dynatrace_one_agent.md) ([Configuration](docs/framework-dynatrace_one_agent.md#configuration))
   * [Google Stackdriver Debugger](docs/framework-google_stackdriver_debugger.md) ([Configuration](docs/framework-google_stackdriver_debugger.md#configuration))
+  * [Google Stackdriver Profiler](docs/framework-google_stackdriver_profiler.md) ([Configuration](docs/framework-google_stackdriver_profiler.md#configuration))
   * [Introscope Agent](docs/framework-introscope_agent.md) ([Configuration](docs/framework-introscope_agent.md#configuration))
+  * [JaCoCo Agent](docs/framework-jacoco_agent.md) ([Configuration](docs/framework-jacoco_agent.md#configuration))
   * [Java Memory Assistant](docs/framework-java_memory_assistant.md) ([Configuration](docs/framework-java_memory_assistant.md#configuration))
   * [Java Options](docs/framework-java_opts.md) ([Configuration](docs/framework-java_opts.md#configuration))
+  * [JProfiler Profiler](docs/framework-jprofiler_profiler.md) ([Configuration](docs/framework-jprofiler_profiler.md#configuration))
   * [JRebel Agent](docs/framework-jrebel_agent.md) ([Configuration](docs/framework-jrebel_agent.md#configuration))
   * [JMX](docs/framework-jmx.md) ([Configuration](docs/framework-jmx.md#configuration))
   * [Luna Security Provider](docs/framework-luna_security_provider.md) ([Configuration](docs/framework-luna_security_provider.md#configuration))
@@ -95,8 +104,10 @@ The buildpack supports extension through the use of Git repository forking. The 
   * [New Relic Agent](docs/framework-new_relic_agent.md) ([Configuration](docs/framework-new_relic_agent.md#configuration))
   * [PostgreSQL JDBC](docs/framework-postgresql_jdbc.md) ([Configuration](docs/framework-postgresql_jdbc.md#configuration))
   * [ProtectApp Security Provider](docs/framework-protect_app_security_provider.md) ([Configuration](docs/framework-protect_app_security_provider.md#configuration))
+  * [Riverbed AppInternals Agent](docs/framework-riverbed_appinternals_agent.md) ([Configuration](docs/framework-riverbed_appinternals_agent.md#configuration))
   * [Spring Auto Reconfiguration](docs/framework-spring_auto_reconfiguration.md) ([Configuration](docs/framework-spring_auto_reconfiguration.md#configuration))
   * [Spring Insight](docs/framework-spring_insight.md)
+  * [SkyWalking Agent](docs/framework-sky_walking_agent.md) ([Configuration](docs/framework-sky_walking_agent.md#configuration))
   * [Takipi Agent](docs/framework-takipi_agent.md) ([Configuration](docs/framework-takipi_agent.md#configuration))
   * [YourKit Profiler](docs/framework-your_kit_profiler.md) ([Configuration](docs/framework-your_kit_profiler.md#configuration))
 * Standard JREs
@@ -104,6 +115,7 @@ The buildpack supports extension through the use of Git repository forking. The 
   * [IBM® SDK, Java™ Technology Edition](docs/jre-ibm_jre.md) ([Configuration](docs/jre-ibm_jre.md#configuration))
   * [OpenJDK](docs/jre-open_jdk_jre.md) ([Configuration](docs/jre-open_jdk_jre.md#configuration))
   * [Oracle](docs/jre-oracle_jre.md) ([Configuration](docs/jre-oracle_jre.md#configuration))
+  * [SapMachine](docs/jre-sap_machine_jre.md) ([Configuration](docs/jre-sap_machine_jre.md#configuration))
 * [Extending](docs/extending.md)
   * [Application](docs/extending-application.md)
   * [Droplet](docs/extending-droplet.md)
@@ -188,6 +200,6 @@ This buildpack is released under version 2.0 of the [Apache License][].
 [Play Framework]: http://www.playframework.com
 [pull request]: https://help.github.com/articles/using-pull-requests
 [Pull requests]: http://help.github.com/send-pull-requests
-[Running Cloud Foundry locally]: http://docs.cloudfoundry.org/deploying/boshlite/index.html
+[Running Cloud Foundry locally]: https://github.com/cloudfoundry/cf-deployment/tree/master/iaas-support/bosh-lite
 [Spring Boot]: http://projects.spring.io/spring-boot/
 [Wikipedia]: https://en.wikipedia.org/wiki/YAML#Basic_components_of_YAML

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Cloud Foundry Java Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright 2013-2018 the original author or authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -63,6 +65,8 @@ module JavaBuildpack
         @droplet
           .java_opts
           .add_system_property('java.io.tmpdir', '$TMPDIR')
+
+        set_active_processor_count unless @droplet.java_home.java_10_or_later?
       end
 
       private
@@ -82,6 +86,10 @@ module JavaBuildpack
         Resolv::DNS::Config.new.lazy_initialize.nameserver_port.any? do |nameserver_port|
           LINK_LOCAL.include? IPAddr.new(nameserver_port[0])
         end
+      end
+
+      def set_active_processor_count
+        @droplet.java_opts.add_option '-XX:ActiveProcessorCount', '$(nproc)'
       end
 
     end
